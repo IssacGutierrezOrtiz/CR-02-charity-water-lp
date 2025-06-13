@@ -6,42 +6,58 @@
     <title>Charity Water Landing Page</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <!-- Hero Section: This is the main banner at the top of the page -->
-    <section class="hero">
-        <!-- Main headline -->
-        <h1>Clean Water for Everyone</h1>
-        <!-- Subheadline -->
-        <p>Join us in bringing safe, clean water to communities in need.</p>
-    </section>
-
-    <!-- Story Section: This tells the story of the nonprofit -->
-    <section class="story">
-        <h2>Our Story</h2>
-        <p>
-         
-    </section>
-
-    <!-- Real-World Impact Story Section -->
-    <section class="impact-story">
-        <!-- Section headline -->
-        <h2>Real Impact: Meet Amina</h2>
-        <!-- Container for image and text -->
-        <div class="impact-content">
-            <!-- Impact image -->
-            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Amina smiling with clean water" class="impact-image">
-            <!-- Impact story text -->
-            <p>
-                Amina used to walk miles every day to collect water for her family. Thanks to your support, her village now has a clean water well. Amina can go to school and her family is healthier and happier.
-            </p>
+<body style="background-color: #1A1A1A;">
+    <!-- Mobile Navigation Bar -->
+    <nav class="mobile-nav">
+        <!-- Logo and brand name container -->
+        <div class="nav-brand">
+            <!-- Logo image on the left -->
+            <img src="img/water-can-transparent.png" alt="Charity Water Logo" class="nav-logo-img">
+            <!-- Brand name next to the logo -->
+            <span class="nav-logo-text">charity: water</span>
         </div>
-    </section>
+        <!-- Hamburger menu button (mobile only) -->
+        <button class="nav-toggle" id="navToggle" aria-label="Open navigation">
+            <!-- Three bars for hamburger icon -->
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <!-- Collapsible menu links (mobile only) -->
+        <div class="nav-links" id="navLinks">
+            <a href="#">About us</a>
+            <a href="#">Why us?</a>
+        </div>
+        <!-- Desktop navigation links (centered, desktop only) -->
+        <div class="nav-desktop-links">
+            <a href="#">About us</a>
+            <a href="#">Why us?</a>
+        </div>
+    </nav>
 
-    <!-- Call-to-Action Section: This encourages visitors to take action -->
-    <section class="call-to-action">
-        <h2>Make a Difference</h2>
-        <p>Your support can help save lives. Every donation brings us closer to a world with clean water for all.</p>
+    <!-- Headline and subheadline directly in the body, no backdrop box -->
+    <h1 style="color: white; text-align: center; margin-top: 40px;">
+        Help Bring Clean Water to people in Need!
+    </h1>
+    <p style="color: white; text-align: center; font-size: 1.2em;">
+        703 Million People Still wait for Clean Water. Join Local-led solutions that keep water Flowing.
+    </p>
+
+    <!-- Donate Now button centered below the text -->
+    <div style="text-align: center; margin: 32px 0;">
         <a href="#" class="donate-button">Donate Now</a>
-    </section>
+    </div>
+
+    <script>
+    // Simple JavaScript to show/hide the menu when hamburger is clicked
+    document.getElementById('navToggle').onclick = function() {
+        var links = document.getElementById('navLinks');
+        if (links.style.display === 'block') {
+            links.style.display = 'none';
+        } else {
+            links.style.display = 'block';
+        }
+    };
+    </script>
 </body>
 </html>
