@@ -1,283 +1,343 @@
-/* charity: water Brand Colors & Fonts
-
-Primary Colors:
-- Yellow:     #FFC907
-- Blue:       #2E9DF7
-
-Secondary Colors:
-- Light Blue: #8BD1CB
-- Green:      #4FCB53
-- Orange:     #FF902A
-- Red:        #F5402C
-- Dark Green: #159A48
-- Pink:       #F16061
-
-Fonts:
-- Proxima Nova
-- Avenir
-
-*/
-
-/* 
-  Charity: Water Landing Page Styles
-  This CSS uses the provided color palette and beginner-friendly styles.
-*/
-
-/* Set up the main font and background color for the whole page */
+/* Set the main font for the whole page */
+/* "Proxima Nova" is the first choice. If it's not available, use Arial or any sans-serif font. */
 body {
-  background-color: #1A1A1A; /* Changed to specific black */
-  font-family: 'Avenir', 'Proxima Nova', Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  color: #222;
+  font-family: "Proxima Nova", Arial, sans-serif;
 }
 
-/* Add a slight shadow and rounded corners to each section for depth */
-section {
-  background: #fff; /* White background for sections */
-  border-radius: 12px; /* Rounded corners */
-  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.07); /* Soft blue shadow */
-  margin: 24px 10px; /* Space between sections */
-  padding: 24px 16px;
+/* Make sure the page takes up the full height of the browser */
+html, body {
+  height: 100%;           /* Full height for html and body */
+  margin: 0;              /* Remove default margin */
+  padding: 0;             /* Remove default padding */
+  background-color: #1a1a1a; /* Set the background color to dark gray */
 }
 
-/* Story Section Styles */
-.story {
-  background-color: #8BD1CB; /* Secondary Light Blue */
-  color: #222;
-  text-align: center;
-  padding: 30px 20px;
-}
-
-/* Add accent color to section headings */
-h2 {
-  color: #2E9DF7; /* Primary blue */
-  margin-top: 0;
-  font-weight: bold;
-}
-
-/* Style the impact story image */
-.impact-image {
+/* Style for the main image grid container */
+.image-grid {
   width: 100%;
-  max-width: 320px;
-  border-radius: 10px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(46, 157, 247, 0.10);
+  height: 100vh;          /* Take up the full viewport height */
+  max-width: none;        /* Remove max width so it fills the screen */
+  margin: 0;              /* Remove centering margin */
+  padding: 0;
+  display: flex;          /* Use flex to fill height with rows */
+  flex-direction: column; /* Stack rows vertically */
+  position: relative;      /* Position relative for absolute children */
 }
 
-/* Donate Button Styles */
-.donate-button {
-  display: inline-block;
-  background-color: #4FCB53; /* Green */
-  color: #fff;
-  padding: 14px 32px;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: bold;
-  font-size: 1.1em;
-  margin-top: 18px;
-  box-shadow: 0 2px 8px rgba(79, 203, 83, 0.10);
-  transition: background 0.3s, transform 0.2s;
-  border: none;
-  cursor: pointer;
+/* Each row holds two images side by side */
+.row {
+  display: flex;           /* Arrange images in a row */
+  width: 100%;
+  flex: 1;                 /* Each row takes equal height */
 }
 
-/* Change button color when hovered */
-.donate-button:hover {
-  background-color: #159A48; /* Dark Green */
-  transform: translateY(-2px) scale(1.04); /* Slight lift */
-}
-
-/* Add some spacing between sections */
-section {
-  margin-bottom: 20px;
-}
-
-/* Mobile Navigation Bar Styles */
-.mobile-nav {
-  display: flex; /* Place logo and menu button in a row */
-  justify-content: space-between; /* Space between logo and button */
-  align-items: center;
-  background: #1A1A1A; /* Match background */
-  padding: 12px 16px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-/* Brand container for logo and text */
-.nav-brand {
-  display: flex;              /* Place logo and text in a row */
-  align-items: center;        /* Vertically center them */
-  gap: 10px;                  /* Space between logo and text */
-}
-
-/* Logo image styles */
-.nav-logo-img {
-  height: 32px;               /* Set logo height */
-  width: auto;                /* Keep aspect ratio */
+/* Style for each image */
+.grid-img {
+  width: 50%;              /* Each image takes up half the row */
+  height: 100%;            /* Each image fills the row height */
+  object-fit: cover;       /* Crop images to fill the area */
   display: block;
+  border: 2px solid #1a1a1a;  /* Adds a small border between images, matches background */
+  box-sizing: border-box;
 }
 
-/* Brand name styles (moved from .nav-logo) */
-.nav-logo-text {
-  color: #FFC907;             /* Brand yellow */
-  font-weight: bold;
-  font-size: 1.2em;
-  letter-spacing: 1px;
+/* Container for image and text overlay */
+.img-text-container {
+  position: relative;      /* Allows text to be placed over the image */
+  width: 50%;              /* Same width as .grid-img */
+  height: 100%;
+  display: flex;
+  display: inline-block; /* So text box stays over its image */
 }
 
-/* Hamburger menu button styles */
-.nav-toggle {
+/* Overlay for the main text (controls position of headline and subheadline) */
+.main-text-overlay {
+  position: absolute;      /* Place text over the image */
+  top: 70%;                /* Move text down from the top (increase for lower, decrease for higher) */
+  left: 60%;                /* Move text in from the left (increase for more right, decrease for more left) */
+  color: #ffc807;          /* Default text color (yellow) */
+  font-family: 'Proxima Nova', Arial, Helvetica, sans-serif; /* Use Proxima Nova if available */
+  z-index: 2;              /* Make sure text is above the image */
+  max-width: 90%;          /* How wide the text box is (increase for wider, decrease for narrower) */
+}
+
+/* Style for movable text boxes */
+.movable-text {
+  position: absolute;
+  /* Remove background and border for transparency */
   background: none;
   border: none;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 1.5em;   /* Change this value to make text larger/smaller */
+  color: #fff;        /* White text for visibility */
+  max-width: 90%;
+  box-sizing: border-box;
+  /* You can adjust top, left, font-size, and width as you like */
 }
 
-/* Hamburger bars */
-.nav-toggle .bar {
-  width: 24px;
-  height: 3px;
-  background: #fff;
-  border-radius: 2px;
+/* Movable text box for the headline */
+.headline-box {
+  top: 700px;
+  left: 150px;
+  width: 1000px;      /* Change this value: larger for one line, smaller for wrapping */
+  font-size: 36pt;    /* Set font size using points (pt), like in Word or Google Docs */
+  /* Example: width: 1000px; will likely keep text on one line */
+}
+
+/* Movable text box for the subheadline */
+.subheadline-box {
+  top: 70px;
+  left: 750px;
+  width: 350px;      /* Change this value: larger for one line, smaller for wrapping */
+  font-size: 28pt;  /* Set font size using points (pt) */
+}
+
+/* Centered text box over all images */
+.centered-box {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  padding: 20px 30px;
+  border-radius: 10px;
+  width: 400px;      /* Change this value: larger for one line, smaller for wrapping */
+  font-size: 36pt;    /* Set font size using points (pt) */
+  font-weight: bold;
+  text-align: center;
+  z-index: 10;
+  color: #fff;
+  box-shadow: none;
+  /* You can adjust top, left, font-size, and width as you like */
+}
+
+/* Main heading style */
+.main-heading {
+  /* 36pt is about 48px (1pt ≈ 1.333px) */
+  font-size: 48px;        /* 36pt = 48px. You can also use font-size: 36pt; */
+  /* To use points directly: font-size: 36pt; */
+  /* To use rem: 48px / 16px = 3rem, so font-size: 3rem; */
+  font-weight: bold;
+  margin: 0 0 20px 0;      /* Space below heading */
+  line-height: 1.1;
+}
+
+/* Subheading style */
+.main-subheading {
+  /* 28pt is about 37px */
+  font-size: 37px;        /* 28pt = 37.3px. You can also use font-size: 28pt; */
+  /* To use points directly: font-size: 28pt; */
+  /* To use rem: 37px / 16px ≈ 2.3rem, so font-size: 2.3rem; */
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Highlighted text styles */
+.highlight-yellow {
+  color: #ffc807;          /* Bright yellow */
+  font-weight: bold;
+}
+
+.highlight-white {
+  color: #fff;             /* White */
+  font-weight: bold;
+}
+
+/* Make sure the image fills the container */
+.img-text-container .grid-img {
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
-/* Collapsible menu links */
+/* Style for the navigation bar at the top */
+.navbar {
+  width: 100%;
+  height: 60px; /* Set the height of the navbar */
+  background-color: #1a1a1a; /* Same as the page background */
+  border-bottom: 2px solid #fff; /* Add a white border at the bottom */
+  display: flex;                /* Use flexbox for layout */
+  align-items: center;          /* Center items vertically */
+  /* Removed justify-content: space-between to keep links next to logo */
+}
+
+/* Style for the logo button in the navbar */
+.logo-btn {
+  background: none;      /* No background color */
+  border: none;          /* No border */
+  padding: 10px 15px;    /* Some space around the logo */
+  cursor: pointer;       /* Cursor changes to pointer on hover */
+  height: 100%;          /* Make button fill navbar height */
+  display: flex;         /* Center the logo vertically */
+  align-items: center;
+}
+
+/* Style for the logo image */
+.logo-img {
+  height: 40px;          /* Set logo height */
+  width: auto;           /* Keep logo aspect ratio */
+  display: block;
+}
+
+/* Container for navigation links */
 .nav-links {
-  display: none; /* Hidden by default */
+  display: flex;              /* Arrange links in a row */
+  align-items: center;        /* Center links vertically */
+  height: 100%;               /* Fill navbar height */
+  margin-left: 10px;          /* Small space after logo so About us touches logo border */
+}
+
+/* Style for each navigation link */
+.nav-link {
+  color: #fff;                /* White text */
+  text-decoration: none;      /* Remove underline */
+  font-size: 2rem;            /* Large text */
+  padding: 0 25px;            /* Space left and right */
+  height: 100%;               /* Fill navbar height */
+  display: flex;              /* Align icon and text */
+  align-items: center;        /* Center vertically */
+  border-left: 3px solid #fff;  /* White border on the left */
+  border-right: 3px solid #fff;  /* White border on the right */
+}
+
+/* Make the right border of the first link and the left border of the second link thinner */
+.nav-link.middle-border-right {
+  border-right: 1px solid #fff;  /* Thinner right border for About us */
+}
+.nav-link.middle-border-left {
+  border-left: 1px solid #fff;   /* Thinner left border for Join Us */
+}
+
+/* Style for the dropdown arrow icon */
+.dropdown-icon {
+  margin-left: 10px;          /* Space between text and arrow */
+  font-size: 1.5rem;          /* Slightly smaller than text */
+  vertical-align: middle;     /* Align with text */
+}
+
+/* You can move or style each part separately using these classes */
+.headline-top {
+  /* To move this line down, increase margin-top (e.g., margin-top: 20px;) */
+  /* To move this line right, use margin-left (e.g., margin-left: 30px;) */
+  /* To change font size, use font-size: 48px; or font-size: 36pt; */
+  margin-top: 300px;
+  font-size: 36pt;
+  max-width: 1000px;
+}
+
+.subheadline-top {
+  /* To move this line down, increase margin-top, to move it down (e.g., margin-top: 20px;) */
+  /* To move this line right, use margin-left (e.g., margin-left: 30px;) */
+  /* To change font size, use font-size: 37px; or font-size: 28pt; */
+  margin-top: 110px;
+  font-size: 28pt;
+  max-width: 1000px;
+}
+
+.subheadline-bottom {
+  /* To move this line down, increase margin-top, to move it down (e.g., margin-top: 20px;) */
+  /* To move this line right, use margin-left (e.g., margin-left: 30px;) */
+  /* To change font size, use font-size: 37px; or font-size: 28pt; */
+  margin-top: 450px;
+  font-size: 36pt;
+  max-width: 1000px;
+}
+
+/* Style for the button group below the centered text */
+.button-group {
+  position: absolute; /* Place over the images */
+  top: 90%; /* Adjust this value to move the buttons up or down */
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 2; /* Make sure buttons are above images */
+  display: flex;
   flex-direction: column;
-  position: absolute;
-  right: 16px;
-  top: 48px;
-  background: #222;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  min-width: 140px;
-  padding: 10px 0;
+  align-items: center;
+  margin-top: 0; /* Remove extra margin */
+  width: 100%;
 }
 
-/* Desktop navigation links (hidden by default, shown on desktop) */
-.nav-desktop-links {
-  display: none; /* Hide on mobile */
+/* First row: two buttons side by side */
+.button-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px; /* Space below the first row */
 }
 
-/* Style for desktop nav links */
-.nav-desktop-links a {
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 24px;
-  font-size: 1.1em;
+/* Style for the yellow donate buttons */
+.donate-btn {
+  background-color: #FFD600; /* Bright yellow */
+  color: #222; /* Dark text for contrast */
+  border: none;
+  border-radius: 5px;
+  padding: 16px 28px;
+  font-size: 14pt;
+  font-family: "Proxima Nova", Arial, sans-serif;
   font-weight: bold;
-  background: #222;
-  border-radius: 6px;
-  margin: 0 6px;
+  cursor: pointer;
+  margin: 0 10px; /* Space between buttons */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
   transition: background 0.2s;
 }
 
-.nav-desktop-links a:hover {
-  background: #2E9DF7;
+/* Style for the "OR" text between buttons */
+.or-text {
   color: #fff;
+  font-size: 14pt;
+  margin: 0 10px;
+  font-family: "Proxima Nova", Arial, sans-serif;
 }
 
-/* Show hamburger menu and mobile links only on mobile */
-@media (max-width: 600px) {
-  .nav-toggle {
-    display: flex; /* Show hamburger menu */
-  }
-  .nav-links {
-    display: none; /* Hidden by default, shown with JS */
-  }
-  .nav-desktop-links {
-    display: none; /* Hide desktop links */
-  }
+/* Second row: single button centered */
+.button-row.single {
+  justify-content: center;
 }
 
-/* Show desktop links and hide hamburger on larger screens */
-@media (min-width: 601px) {
-  .nav-toggle {
-    display: none; /* Hide hamburger menu */
-  }
-  .nav-links {
-    display: none !important; /* Always hide mobile links */
-  }
-  .nav-desktop-links {
-    display: flex; /* Show desktop links */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 50%;
-    /* Vertically center in nav bar */
-    align-items: center;
-    height: 100%;
-    z-index: 1;
-  }
-  .mobile-nav {
-    position: relative; /* Needed for absolute centering */
-  }
+/* Style for the yellow fundraiser button */
+.fundraiser-btn {
+  background-color: #FFD600;
+  color: #222;
+  border: none;
+  border-radius: 5px;
+  padding: 18px 36px;
+  font-size: 14pt;
+  font-family: "Proxima Nova", Arial, sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  transition: background 0.2s;
+  margin-top: 0;
 }
 
 /* 
-  Media Queries for Responsive Design
-  Media queries help make your website look good on different screen sizes,
-  like phones (small screens) and computers (large screens).
+  Make images stack vertically on small screens (like phones).
+  The @media rule below changes the layout when the screen width is 700px or less.
 */
-
-/* This media query applies styles when the screen is 600px wide or less (like on most phones) */
-@media (max-width: 600px) {
-  /* Make hero section padding smaller on small screens */
-  .hero {
-    padding: 32px 8px;
-    font-size: 1em;
+@media (max-width: 700px) {
+  .image-grid {
+    height: auto;          /* Let the grid be as tall as needed on mobile */
+    max-width: 1200px;     /* Restore max width for mobile */
   }
-
-  /* Make headline font size smaller so it fits on small screens */
-  .hero h1 {
-    font-size: 1.4em;
+  .row {
+    flex-direction: column; /* Stack images vertically instead of side by side */
+    flex: none;             /* Remove flex so rows shrink to fit content */
   }
-
-  /* Make subheadline font size smaller */
-  .hero p {
-    font-size: 1em;
+  .grid-img {
+    width: 100%;            /* Each image takes up the full width */
+    height: 180px;          /* Make images shorter for mobile screens */
   }
-
-  /* Make story and call-to-action sections have less padding */
-  .story,
-  .call-to-action,
-  .donation-section {
-    padding: 14px 8px;
+  .main-text-overlay {
+    top: 8%;               /* Adjust for mobile */
+    left: 5%;
+    max-width: 90%;
   }
-
-  /* Make impact story image smaller and stack above the text */
-  .impact-content {
-    display: block; /* Stack items vertically */
-    text-align: center;
+  .main-heading {
+    font-size: 1.3rem;
   }
-
-  .impact-image {
-    width: 90%;    /* Make image take up most of the width */
-    max-width: 220px;
-  }
-}
-
-/* This media query applies styles when the screen is wider than 600px (like on tablets and computers) */
-@media (min-width: 601px) {
-  /* Show image and text side by side in the impact story */
-  .impact-content {
-    display: flex;           /* Place items in a row */
-    align-items: center;     /* Vertically center items */
-    justify-content: center; /* Center the whole group */
-    gap: 28px;               /* Space between image and text */
-    text-align: left;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .impact-image {
-    width: 300px;
+  .main-subheading {
+    font-size: 1rem;
   }
 }
